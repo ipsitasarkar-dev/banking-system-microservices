@@ -2,20 +2,6 @@
 
 A production-inspired **Banking Microservices Application** built with **Spring Boot** and **Spring Cloud**. The system is decomposed into independent, loosely-coupled services for Accounts, Loans, and Cards — each with its own database, independently deployable, and communicating through a centralized API Gateway. The entire platform is containerized using **Docker**.
 
----
-
-## ✨ Resume-Worthy Highlights
-
-- Designed and implemented a **cloud-native microservices architecture** using Spring Boot and Spring Cloud, decomposing a banking domain into independently deployable services
-- Configured a **Spring Cloud Config Server** to externalize and centralize configuration across all microservices, enabling environment-specific deployments without code changes
-- Implemented **Eureka-based service discovery**, allowing microservices to dynamically register and locate each other without hardcoded URLs
-- Built a **Spring Cloud Gateway** as a single entry point for all client requests, handling routing, load balancing, and cross-cutting concerns
-- Applied the **Database-per-Service pattern**, giving each microservice its own isolated MySQL schema to ensure loose coupling and independent scalability
-- Containerized all services using **Docker** and orchestrated multi-container startup with **Docker Compose**, enabling one-command environment setup
-- Followed **12-Factor App** principles for configuration, statelessness, and portability across environments
-
----
-
 ## 🏗️ Architecture Overview
 
 ```
