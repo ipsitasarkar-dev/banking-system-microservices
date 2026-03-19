@@ -1,43 +1,56 @@
 services:
 
-  rabbit:
+  rabbit-ms:
     image: rabbitmq:4-management
     hostname: rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "secret123"
     ports:
       - "5672:5672"
       - "15672:15672"
     healthcheck:
       test: rabbitmq-diagnostics check_port_connectivity
       interval: 10s
-      timeout: 5s
+      timeout: 10s
       retries: 10
-      start_period: 5s
+      start_period: 30s
     extends:
       file: common-config.yml
       service: network-deploy-service
 
 
 
+
+
+
+
   configserver:
-    image: "yourbank/configserver:v3"
+    image: "ipsitasarkar/configserver:v3"
     container_name: configserver-ms
     ports:
       - "8071:8071"
     depends_on:
-      rabbit:
+      rabbit-ms:
         condition: service_healthy
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_CLOUD_CONFIG_SERVER_GIT_URI: https://github.com/ipsitasarkar-dev/EazyBank-config.git
     healthcheck:
       test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
-      timeout: 5s
+      timeout: 30s
       retries: 10
       start_period: 10s
     extends:
       file: common-config.yml
       service: microservice-base-config
 
+
+
+
   accounts:
-    image: "yourbank/accounts:v3"
+    image: "ipsitasarkar/accounts:v3"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -52,7 +65,7 @@ services:
 
 
   cards:
-    image: "yourbank/cards:v2"
+    image: "ipsitasarkar/cards:v3"
     container_name: cards-ms
     ports:
       - "9000:8080"
@@ -64,7 +77,7 @@ services:
       service: microservice-configserver-config
 
   loans:
-    image: "yourbank/loans:v2"
+    image: "ipsitasarkar/loans:v3"
     container_name: loans-ms
     ports:
       - "8090:8090"

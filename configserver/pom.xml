@@ -11,6 +11,7 @@
 	<groupId>com.ipsita.bank</groupId>
 	<artifactId>configserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 	<name>configserver</name>
 	<description>Config Server for EazyBank microservices</description>
 	<url/>

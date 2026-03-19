@@ -29,7 +29,7 @@ spring:
 
   rabbitmq:
     host: "localhost"
-    port: 5671
+    port: 5672
     password: "guest"
 
 management:

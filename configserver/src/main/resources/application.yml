@@ -9,15 +9,16 @@ spring:
     config:
       server:
         git:
-          uri: "https://github.com/Ipsita0301/EazyBank-config.git"
+          uri: "https://github.com/ipsitasarkar-dev/EazyBank-config.git"
           default-label: main
-          timeout: 5
+          timeout: 10
           clone-on-start: true
           force-pull: true
 
   rabbitmq:
     host: "localhost"
-    port: 5671
+    port: 5672
+    username: "guest"
     password: "guest"
 
 management:

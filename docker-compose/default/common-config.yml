@@ -1,7 +1,8 @@
 services:
   network-deploy-service:
     networks:
-      yourbank
+      - yourbank
+
   microservice-base-config:
     extends:
       service: network-deploy-service
